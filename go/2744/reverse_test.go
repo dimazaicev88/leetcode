@@ -1,13 +1,11 @@
-package main
+package _2744
 
-import "testing"
+import (
+	"github.com/stretchr/testify/require"
+	"testing"
+)
 
-func BenchmarkReverse(b *testing.B) {
-	sl := []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}
-
-	for i := 0; i < b.N; i++ {
-		for _, v := range sl {
-			_ = v
-		}
-	}
+func TestMaximumNumberOfStringPairs(t *testing.T) {
+	req := require.New(t)
+	req.Equal(2, maximumNumberOfStringPairs([]string{"cd", "ac", "dc", "ca", "zz"}))
 }
