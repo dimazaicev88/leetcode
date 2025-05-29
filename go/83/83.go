@@ -18,7 +18,7 @@ func deleteDuplicates(head *ListNode) *ListNode {
 	mapNum := map[int]int{}
 	for node := head; node != nil; node = node.Next {
 		if _, ok := mapNum[node.Val]; ok {
-			node.Next = &ListNode{Val: node.Next.Val, Next: node.Next}
+			node.Next = &ListNode{Val: node.Next.Next.Val, Next: node.Next.Next}
 			continue
 		}
 		mapNum[node.Val]++
