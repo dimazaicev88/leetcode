@@ -2,21 +2,24 @@ package _83
 
 type ListNode struct {
 	Val  int
+	Desc string
 	Next *ListNode
 }
 
 // 83. Remove Duplicates from Sorted List
 func deleteDuplicates(head *ListNode) *ListNode {
-	mapNum := map[int]int{}
-	currentNode := head
+	if head == nil {
+		return nil
+	}
 
+	currentNode := head
 	for currentNode.Next != nil {
-		count, ok := mapNum[currentNode.Val]
-		if ok && count > 0 {
-			currentNode.Next = currentNode.Next.Next
+		if currentNode.Val == currentNode.Next.Val {
+			currentNode = currentNode.Next.Next
+		} else {
+			currentNode = currentNode.Next
 		}
-		mapNum[currentNode.Val]++
-		currentNode = currentNode.Next
+		currentNode.Next = nil
 	}
 
 	return head
