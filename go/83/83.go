@@ -1,13 +1,5 @@
 package _83
 
-/**
- * Definition for singly-linked list.
- * type ListNode struct {
- *     Val int
- *     Next *ListNode
- * }
- */
-
 type ListNode struct {
 	Val  int
 	Next *ListNode
@@ -16,12 +8,15 @@ type ListNode struct {
 // 83. Remove Duplicates from Sorted List
 func deleteDuplicates(head *ListNode) *ListNode {
 	mapNum := map[int]int{}
-	for node := head; node != nil; node = node.Next {
-		if _, ok := mapNum[node.Val]; ok {
-			node.Next = &ListNode{Val: node.Next.Next.Val, Next: node.Next.Next}
-			continue
+	currentNode := head
+
+	for currentNode.Next != nil {
+		count, ok := mapNum[currentNode.Val]
+		if ok && count > 0 {
+			currentNode.Next = currentNode.Next.Next
 		}
-		mapNum[node.Val]++
+		mapNum[currentNode.Val]++
+		currentNode = currentNode.Next
 	}
 
 	return head

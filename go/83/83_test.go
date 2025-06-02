@@ -1,6 +1,9 @@
 package _83
 
-import "testing"
+import (
+	"fmt"
+	"testing"
+)
 
 func Test83(t *testing.T) {
 	head := &ListNode{
@@ -19,5 +22,5 @@ func Test83(t *testing.T) {
 		},
 	}
 
-	deleteDuplicates(head)
+	fmt.Println(fmt.Sprintf("%+v", deleteDuplicates(head)))
 }
