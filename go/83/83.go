@@ -19,7 +19,7 @@ func deleteDuplicates(head *ListNode) *ListNode {
 		} else {
 			currentNode = currentNode.Next
 		}
-		currentNode.Next = nil
+		currentNode.Next = currentNode.Next.Next
 	}
 
 	return head
