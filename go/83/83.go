@@ -15,12 +15,10 @@ func deleteDuplicates(head *ListNode) *ListNode {
 	currentNode := head
 	for currentNode.Next != nil {
 		if currentNode.Val == currentNode.Next.Val {
-			currentNode = currentNode.Next.Next
+			currentNode.Next = currentNode.Next.Next
 		} else {
 			currentNode = currentNode.Next
 		}
-		currentNode.Next = currentNode.Next.Next
 	}
-
 	return head
 }
