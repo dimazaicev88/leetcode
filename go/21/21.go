@@ -14,6 +14,10 @@ func mergeTwoLists(list1 *ListNode, list2 *ListNode) *ListNode {
 		return list1
 	}
 
+	if list1.Val > list2.Val {
+		return mergeTwoLists(list2, list1)
+	}
+
 	var head *ListNode
 	var tail *ListNode
 
