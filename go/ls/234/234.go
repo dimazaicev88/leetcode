@@ -5,6 +5,20 @@ type ListNode struct {
 	Next *ListNode
 }
 
+func reverse(head *ListNode) *ListNode {
+	var reverseList *ListNode
+	for head != nil {
+		if reverseList == nil {
+			reverseList = &ListNode{Val: head.Val}
+		} else {
+			reverseList = &ListNode{Val: head.Val, Next: reverseList}
+		}
+		head = head.Next
+	}
+
+	return reverseList
+}
+
 func isPalindrome(head *ListNode) bool {
 	if head == nil {
 		return false
@@ -12,29 +26,22 @@ func isPalindrome(head *ListNode) bool {
 		return true
 	}
 
-	var reverseList *ListNode
 	cur := head
-	left, right := 0, 0
-	for cur != nil {
-		if reverseList == nil {
-			reverseList = &ListNode{Val: cur.Val}
-		} else {
-			reverseList = &ListNode{Val: cur.Val, Next: reverseList}
-		}
-		cur = cur.Next
-		right++
+	var slow, fast = cur, cur
+
+	for fast != nil && fast.Next != nil {
+		slow = slow.Next
+		fast = fast.Next.Next
 	}
 
+	reverseList := reverse(slow)
 	cur = head
-	curReverse := reverseList
-	for left < right {
-		if cur.Val != curReverse.Val {
+	for reverseList != nil {
+		if cur.Val != reverseList.Val {
 			return false
 		}
 		cur = cur.Next
-		curReverse = curReverse.Next
-		left++
-		right--
+		reverseList = reverseList.Next
 	}
 
 	return true
